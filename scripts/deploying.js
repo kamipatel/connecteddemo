@@ -59,6 +59,8 @@ $(document).ready(() => {
 
   function createJob(settings) {
 
+    console.debug("createJob called");
+
     $.ajax({
       type: 'POST',
       url: '/api/deploy',
@@ -67,6 +69,7 @@ $(document).ready(() => {
       dataType: 'json',
       async: false,
       success: () => {
+        
         // update_status(`Started job: ${settings.guid}`);
       },
       error: (commandDataResponse) => {
@@ -74,7 +77,7 @@ $(document).ready(() => {
         $('div#loaderBlock').hide();
       }
     });
-  }
+  } //end of createJob
 
   const githubRepo = $('input#template').val();
   const guid = $('input#guid').val();
@@ -107,6 +110,8 @@ $(document).ready(() => {
     },
     success: (yamlFileDataResponse) => {
 
+      console.debug("yaml response called");
+
       const doc = jsyaml.load(yamlFileDataResponse);
 
       settings.yamlExists = true;
@@ -138,8 +143,12 @@ $(document).ready(() => {
     }
   });
 
+  console.debug("Before calling createJob(settings)");
+  
   createJob(settings);
 
+  console.debug("Before calling poll(guid)");
+  
   poll(guid);
 
-});
+}); ///end
