@@ -10,7 +10,12 @@ app.use('/scripts', express.static(`${__dirname}/scripts`));
 app.use('/dist', express.static(`${__dirname}/dist`));
 
 /*
+run notes
+
 jdbc:postgresql://ec2-174-129-195-73.compute-1.amazonaws.com:5432/d90phktnch2a7m?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+
+https://labappdeploy.herokuapp.com/oauth/callback
+heroku local
 */
 
 app.use(bodyParser.urlencoded({

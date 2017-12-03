@@ -2,9 +2,24 @@ const async = require('async');
 const pgp = require('pg-promise')();
 const dbUrl = require('url');
 const exec = require('child-process-promise').exec;
+const jsforce = require('jsforce');
 
 const dbParams = dbUrl.parse(process.env.DATABASE_URL);
 const auth = dbParams.auth.split(':');
+
+
+var orgUsername = "kamlesh.patel@sparkle.devhub";
+var orgPassword = "kam123456";
+var conn = new jsforce.Connection({
+    // you can change loginUrl to connect to sandbox or prerelease env.
+    oauth2 : {
+        clientId : '3MVG9zlTNB8o8BA1drFI_YDsprFa35rJye5SeJWP7X7taeXvchtdZtVKhSrVXq5EMbnpEXDhZ3ds7SHFjUChZ',
+        clientSecret : '4172111670315471031',
+        redirectUri : 'https://labappdeploy.herokuapp.com/oauth/callback'
+      }
+    
+});
+
 
 const config = {
   host: dbParams.hostname,
@@ -16,6 +31,53 @@ const config = {
   idleTimeoutMillis: 1000,
   max: 10
 };
+
+function pushNotificationToSfdc( step, guid, stage, complete, repo, scratchurl, errormessage, username){
+  
+conn.login(orgUsername, orgPassword, function(err, userInfo) {
+  if (err) { 
+      console.error("login exception");
+      return console.error(err); 
+  }
+  // Now you can get the access token and instance URL information.
+  // Save them to establish connection next time.
+  console.log("Logged in=" + conn.accessToken);    
+
+  if(step == "init"){
+    conn.sobject("Lead").upsert({ 
+      guid__c : guid,
+      stage__c : stage,
+      repo__c: repo,
+      username__c: username,
+      Company: username, 
+      LastName: username
+    }, 'guid__c', function(err, ret) {
+      if (err || !ret.success) { return console.error(err, ret); }
+      console.log('Upserted Successfully');
+      // ...
+    });
+  } //if init end
+
+  if(step == "status"){
+    conn.sobject("Lead").upsert({ 
+      guid__c : guid,
+      complete__c: complete,
+      stage__c : stage,
+      scratchurl__c : scratchurl,
+      errormessage__c: errormessage,
+      username__c: username,
+      Company: username, 
+      LastName: username
+    }, 'guid__c', function(err, ret) {
+      if (err || !ret.success) { return console.error(err, ret); }
+      console.log('Upserted Successfully');
+      // ...
+    });
+  } //if status end
+});
+
+}
+
 
 const db = pgp(config);
 
@@ -144,9 +206,12 @@ async.whilst(
 
     const selectQuery = "SELECT guid, username, repo, settings FROM deployments WHERE stage = 'init' AND complete = false LIMIT 1";
     let guid = '';
+    let odata = null;
 
     db.any(selectQuery, [true])
       .then((data) => {
+
+        odata = data;
 
         // throw if no data to skip the subsequent promises
         if (data.length === 0) {
@@ -186,6 +251,8 @@ async.whilst(
         settings.scratchOrgUrl = '';
         settings.stderr = '';
         settings.stdout = '';
+
+        pushNotificationToSfdc( "init", guid, "init", false, settings.githubRepo, "", "", data[0].username);
 
         return settings;
       })
@@ -247,12 +314,17 @@ async.whilst(
       .then(settings => deploymentStage(settings, true))
       .then((settings) => {
         console.log('finished job', settings.guid);
+        pushNotificationToSfdc( "status", guid, "complete", true, "", "","", odata[0].username);
+        //
+
       })
       .catch((error) => {
         // handles cases where there are no records
         if (error.message !== 'norecords') {
           console.error('guid', guid);
           console.error('error', error);
+
+          pushNotificationToSfdc( "status", guid, "fail", false, "", "", error.message, data[0].username);
 
           deploymentError(guid, error.message);
         }
