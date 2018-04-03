@@ -7,7 +7,7 @@
 
   <p class="slds-p-bottom_medium">
   	<strong>Deploying to:</strong><br /> 
-  	<%= user_name %>
+    <%= user_name %><br /> 
   </p>
   <p>
   	<strong>From repository:</strong><br />
@@ -22,5 +22,6 @@
 
 <input type="hidden" id="template" value="<%= template %>"></input>
 <input type="hidden" id="guid" value="<%= guid %>"></input>
-  
+<input type="hidden" id="sco" value="<%= sco %>"></input>
+
 <% include ../partials/footer %>

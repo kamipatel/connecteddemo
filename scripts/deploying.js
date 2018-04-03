@@ -81,6 +81,10 @@ $(document).ready(() => {
 
   const githubRepo = $('input#template').val();
   const guid = $('input#guid').val();
+  const sco = $('input#sco').val();
+
+  console.debug('guid=' + guid);
+  console.debug('sco=' + sco);
 
   let yamlFile = githubRepo.replace('github.com', 'raw.githubusercontent.com');
   yamlFile += '/master/.salesforcedx.yaml';
@@ -88,6 +92,7 @@ $(document).ready(() => {
   const settings = {};
   settings.githubRepo = githubRepo;
   settings.guid = guid;
+  settings.sco = sco;
   settings.dataPlans = [];
 
   $.ajax({
@@ -130,6 +135,8 @@ $(document).ready(() => {
       settings.scratchOrgDef = doc['scratch-org-def'];
       settings.showScratchOrgUrl = doc['show-scratch-org-url'];
       settings.openPath = doc['open-path'];
+      
+      settings.sco = sco;
       
       const dataPlanCount = doc['data-plans'].length;
 

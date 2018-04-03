@@ -1,6 +1,14 @@
+#Kam notes
+jdbc:postgresql://ec2-174-129-195-73.compute-1.amazonaws.com:5432/d90phktnch2a7m?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+bzmbggpjkvylew/db670f448a980288bb1b82fbefa7c8eebb60c7dd2cb365fc003fc781670ff2a2
+
+sfdx force:config:set defaultusername="00DB0000000DUyJ!ARsAQP5N_9vZ6_Q_OGyzmWDnVTs4UH_aeh.qMWYczhhz_lCg7GSFctooBnVvRlvMW6OjWGXBJjV7cYajQZWgdgXYOzWM1ISx"
+
+sfdx force:source:convert -d mdapioutput --json;sfdx force:mdapi:deploy --verbose -d mdapioutput/ --targetusername "00DB0000000DUyJ!ARsAQP5N_9vZ6_Q_OGyzmWDnVTs4UH_aeh.qMWYczhhz_lCg7GSFctooBnVvRlvMW6OjWGXBJjV7cYajQZWgdgXYOzWM1ISx"
+
 # Deploy to Salesforce DX
 
-An open-source and community-driven tool for one-click Salesforce DX deployments from public repositories to Scratch Orgs. You can us this tool by visiting [https://deploy-to-sfdx.com/](https://deploy-to-sfdx.com/) and logging in with your Dev Hub credentials.
+An open-source and community-driven tool for one-click Salesforce DX deployments from public repositories to Scratch Orgs. You can use this tool by visiting [https://deploy-to-sfdx.com/](https://deploy-to-sfdx.com/) and logging in with your Dev Hub credentials.
 
 ## Local Setup
 

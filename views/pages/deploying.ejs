@@ -8,6 +8,7 @@
         <img src="/dist/assets/images/loader.gif" style="width:27px;" /> Deploying
         <strong>
           <%= template %>
+         
         </strong>
       </h2>
     </div>
@@ -18,18 +19,32 @@
         <div class="slds-notify slds-notify_toast slds-theme_success" role="alert">
           <span class="slds-assistive-text">warning</span>
 
+          <%if (sco === 'false') { %>
+            <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small ">App deployment has been initiated!
+                </h2>
+              </div>
+            <% } %>
+
+          <%if (sco === 'true') { %>
           <div class="slds-notify__content">
-            <h2 class="slds-text-heading_small ">Nice! Your app has been deployed! You can access it at:
+            <h2 class="slds-text-heading_small ">App has been deployed! 
+              If this is a scratch org, you can access it at:
               <strong>
                 <a id="loginUrl" target="_blank" href=""></a>
               </strong>
             </h2>
           </div>
+          <% } %>
+          
         </div>
+       
 
+        <%if (sco === 'true') { %>
         <p class="slds-m-around_large">
           <strong>Note:</strong> It can take up to 5 minutes for the my domain DNS to propogate. If the scratch org doesn't load,
           refresh it in a few minutes.</p>
+          <% } %>
 
       </div>
     </div>
@@ -55,5 +70,6 @@
 
   <input type="hidden" id="template" value="<%= template %>"></input>
   <input type="hidden" id="guid" value="<%= guid %>"></input>
+  <input type="hidden" id="sco" value="<%= sco %>"></input>
 
   <% include ../partials/footer %>

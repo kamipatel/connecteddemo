@@ -19,7 +19,8 @@ CREATE TABLE deployments (
     complete boolean DEFAULT false,
     error_message text,
     settings text,
-    scratch_url text
+    scratch_url text,
+    isscratchorg boolean DEFAULT true,
 );
 
 CREATE TABLE deployment_steps (

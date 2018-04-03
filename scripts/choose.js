@@ -4,8 +4,9 @@ $(document).ready(function () {
 
     var template = $('input[name=options]:checked').val();
     var guid = $('input#guid').val();
+    var sco = $('input#sco').val();
 
-    window.location.href = '/deploying?template=' + template + '&guid=' + guid;
+    window.location.href = '/deploying?template=' + template + '&guid=' + guid + '&sco=' + sco;
 
   });
 
