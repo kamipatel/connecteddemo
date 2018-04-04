@@ -73,7 +73,7 @@ $(document).ready(() => {
         // update_status(`Started job: ${settings.guid}`);
       },
       error: (commandDataResponse) => {
-        update_status(`Sorry, something went wrong. Please log an issue on github: https://github.com/wadewegner/deploy-to-sfdx/issues.\n\nError: ${commandDataResponse.responseText}\n`);
+        update_status(`Sorry, something went wrong.\n\nError: ${commandDataResponse.responseText}\n`);
         $('div#loaderBlock').hide();
       }
     });

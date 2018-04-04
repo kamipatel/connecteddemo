@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/wadewegner/deploy-to-sfdx.git"
   },
-  "author": "Wade Wegner",
+  "author": "ISV",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/wadewegner/deploy-to-sfdx/issues"

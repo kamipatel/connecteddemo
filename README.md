@@ -4,8 +4,8 @@ git add .
 git commit -m "kam changes"
 git push heroku master
 
-https://labappdeploy.herokuapp.com?template=https://github.com/wadewegner/sfdx-simple&sco=false
-https://labappdeploy.herokuapp.com?template=https://github.com/wadewegner/sfdx-simple&sco=true
+https://labappdeploy.herokuapp.com?template=https://github.com/rreboucas/sparkle-dx.git&sco=false
+https://labappdeploy.herokuapp.com?template=https://github.com/rreboucas/sparkle-dx.git&sco=true
 
 jdbc:postgresql://ec2-174-129-195-73.compute-1.amazonaws.com:5432/d90phktnch2a7m?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
 bzmbggpjkvylew/db670f448a980288bb1b82fbefa7c8eebb60c7dd2cb365fc003fc781670ff2a2
