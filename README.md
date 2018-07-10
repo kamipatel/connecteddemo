@@ -4,6 +4,8 @@ git add .
 git commit -m "kam changes"
 git push heroku master
 
+https://localhost:8443/?template=https://github.com/wadewegner/sfdx-simple&sco=true
+
 https://labappdeploy.herokuapp.com?template=https://github.com/rreboucas/sparkle-dx.git&sco=false
 https://labappdeploy.herokuapp.com?template=https://github.com/rreboucas/sparkle-dx.git&sco=true
 
@@ -22,29 +24,29 @@ An open-source and community-driven tool for one-click Salesforce DX deployments
 
 You'll need the following setup to run this project locally.
 
-1. Create a Salesforce DX Dev Hub. You can learn more [here](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_enable_devhub.htm).
+1.  Create a Salesforce DX Dev Hub. You can learn more [here](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_enable_devhub.htm).
 
-2. Install the Salesforce CLI from [here](https://developer.salesforce.com/tools/sfdxcli).
+2.  Install the Salesforce CLI from [here](https://developer.salesforce.com/tools/sfdxcli).
 
-3. Create a Connected App in your Dev Hub.
+3.  Create a Connected App in your Dev Hub.
 
     - Callback: https://localhost:8443/oauth/callback
     - Scopes
 
-        - Access your basic information (id, profile, email, address, phone)
-        - Access and manage your data (api)
-        - Provide access to your data via the Web (web)
-        - Allow access to your unique identifier (openid)
+      - Access your basic information (id, profile, email, address, phone)
+      - Access and manage your data (api)
+      - Provide access to your data via the Web (web)
+      - Allow access to your unique identifier (openid)
 
     - Note down the consumer key and consumer secret for later.
 
-4. Create a Postgres database in Heroku.
+4.  Create a Postgres database in Heroku.
 
-5. Create the `deployments` table by running the `deployments.sql` script against your Postgres database.
+5.  Create the `deployments` table by running the `deployments.sql` script against your Postgres database.
 
-6. Create a `.env` file to store your local environment settings.
+6.  Create a `.env` file to store your local environment settings.
 
-7. Update your `.env` file to include the following
+7.  Update your `.env` file to include the following
 
 ```
 BUILDPACK_URL=https://github.com/wadewegner/sfdx-buildpack
@@ -61,9 +63,9 @@ CERT_PEM=
 KEY_PEM=
 ```
 
-8. Get your Postgres `DATABASE_URL` by running `heroku config:get DATABASE_URL --app deploy-to-sfdx` and update.
+8.  Get your Postgres `DATABASE_URL` by running `heroku config:get DATABASE_URL --app deploy-to-sfdx` and update.
 
-9. Create your own local certificates or use these defaults:
+9.  Create your own local certificates or use these defaults:
 
 ```
 PASS_PHRASE=test1234
