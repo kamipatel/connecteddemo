@@ -6,7 +6,6 @@ const https = require('https');
 const app = express();
 const router = express.Router();
 
-app.use('/scripts', express.static(`${__dirname}/scripts`));
 app.use('/dist', express.static(`${__dirname}/dist`));
 
 /*
@@ -27,7 +26,6 @@ app.set('view engine', 'ejs');
 app.use(cookieParser());
 
 require('./lib/web')(app);
-require('./lib/apis')(router);
 
 app.use('/api', router);
 
@@ -47,7 +45,7 @@ if (process.env.NODE_ENV === 'dev') {
   };
 
   const httpsServer = https.createServer(sslOptions, app);
-  
+
   httpsServer.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);
   });

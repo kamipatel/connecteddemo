@@ -2,24 +2,12 @@
 
 <div class="sfdx-slim">
 	<main class="slds-card slds-text-align_center">
-	  <p class="slds-m-top_small slds-m-bottom_small">One-click Salesforce DX deployments from public repositories to Scratch Orgs or dev org.</p>
-	  <% if (template) { %>
-	  <p>
-		<strong>From Repo</strong><br />
-		<a href="<%= template %>" target="_new"><%= template %></a>
-	  </p>
-	  <% } %>
+		<p class="slds-m-top_small slds-m-bottom_small">Please login using your user credentials and give permissions</p>
+
 		<% include ../partials/actions %>
 
-
-		<p class="slds-m-around_small">Need a Dev Hub org? Learn how to get one <a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_enable_devhub.htm" target="_blank">here</a>.</p>
 	</main>
 
-	<div class="slds-card slds-text-align_center">
-		<h3 class="slds-text-heading_medium slds-p-top_medium slds-m-bottom_small">Currently <%= deploymentCount %> successful deployments!</h3>
-	</div>
-
-	<a class="slds-button slds-button_neutral slds-show slds-m-top_medium sfdx-button_large sfdx-button_mobile" href="/about">Learn More</a>
 </div>
 
 <% include ../partials/footer %>
