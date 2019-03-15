@@ -1,5 +1,7 @@
 #Kam notes
 
+curl -H "Authorization: Bearer 00D90000000YnVi!ARIAQBdfu5fjPy_JClQ7BrkkyX3RcPv0toe 7QcotaZu1aWJnVmN2enCLAeUKBQVcnSvR3JjDz202LfRpGTRzaCmsC6lUBnaQ" -H "X-PrettyPrint:1" https://shivasoftdemo-dev-ed.my.salesforce.com/services/data/v45.0/
+
 git add .
 git commit -m "kam changes"
 git push heroku master
