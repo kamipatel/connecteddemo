@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/wadewegner/deploy-to-sfdx#readme",
   "dependencies": {
-    "@salesforce-ux/design-system": "^2.3.1",
+    "@salesforce-ux/design-system": "^2.8.3",
     "amqplib": "^0.5.1",
     "async": "^2.5.0",
     "aws-sdk": "^2.422.0",

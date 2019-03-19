@@ -1,15 +1,57 @@
-<div class="slds-align_absolute-center slds-p-top_medium slds-p-bottom_small sfdx-button-bar">
+<table class="slds-table slds-table_cell-buffer slds-table_bordered">
 
-	<div style="display: block;">
+	<tbody>
+		<% for(var i=0; i < users.length; i++) { %>
 
-		<ul style="list-style-type: none;">
-			<li>
-				<a class="slds-button slds-button_brand sfdx-button_large" href="/login">
-					Login
-				</a>
-			</li>
-		</ul>
+		<tr>
+			<td>
+				<%= users[i].name %>
+			</td>
+			<td>
+				<%= users[i].email %>
+			</td>
+			<td>
+				<%= users[i].orgid %>
+			</td>
+			<td>
+				<%= users[i].instanceUrl %>
+			</td>
+			<td>
+				<%= users[i].prefUsername %>
+			</td>
+			<td>
+				<a onClick="PostDataUsingRefreshToken('<%= users[i].id %>')">Send data - Using Refresh Token</a>
 
-	</div>
+			</td>
+		</tr>
+		<% } %>
+	</tbody>
+</table>
 
-</div>
+<script type="text/javascript">
+	console.log('Client-side code running');
+
+	function PostDataUsingRefreshToken(idtoprocess) {
+		console.log('PostDataUsingRefreshToken, id=' + idtoprocess);
+
+		let data = {
+			id: idtoprocess
+		};
+
+		fetch('/SendData', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			})
+			.then(response => response.json())
+			.then(data => {
+				console.log(data.status) // Prints result from `response.json()` in getRequest
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+
+	}
+</script>
