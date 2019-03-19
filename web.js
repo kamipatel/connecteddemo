@@ -33,19 +33,22 @@ app.use('/api', router);
 const port = process.env.PORT || 8443;
 
 // if local, use 8443 and certificate
+
 if (process.env.NODE_ENV === 'dev') {
+  /*
+    const passPhrase = process.env.PASS_PHRASE;
+    const certPem = process.env.CERT_PEM.replace(/\\n/g, '\n');
+    const keyPem = process.env.KEY_PEM.replace(/\\n/g, '\n');
 
-  const passPhrase = process.env.PASS_PHRASE;
-  const certPem = process.env.CERT_PEM.replace(/\\n/g, '\n');
-  const keyPem = process.env.KEY_PEM.replace(/\\n/g, '\n');
+    const sslOptions = {
+      key: keyPem,
+      cert: certPem,
+      passphrase: passPhrase
+    };
 
-  const sslOptions = {
-    key: keyPem,
-    cert: certPem,
-    passphrase: passPhrase
-  };
 
   const httpsServer = https.createServer(sslOptions, app);
+  */
 
   const httpServer = http.createServer(app);
 
