@@ -1,5 +1,12 @@
-<a href="/cleanup">Cleanup entries</a>
+<div class="slds-text-heading_medium"> <a href="/cleanup">Cleanup entries</a>
+	<br />
+</div>
+
+<div class="slds-text-heading_medium">Send Status:
+	<span id="status"></span>
+</div>
 <br />
+
 <table class="slds-table slds-table_cell-buffer slds-table_bordered">
 	<thead>
 		<tr>
@@ -7,7 +14,7 @@
 			<th>Email</th>
 			<th>OrgId</th>
 			<th>instanceUrl</th>
-			<th>prefUsername</th>
+			<th>Username</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,8 +38,11 @@
 			</td>
 			<td>
 				<a onClick="PostDataUsingRefreshToken('<%= users[i].id %>')">Send data - Using Refresh Token</a>
-
 			</td>
+			<td>
+				<a onClick="PostDataUsingJWT('<%= users[i].id%>')">Send data - Using JWT</a>
+			</td>
+
 		</tr>
 		<% } %>
 	</tbody>
@@ -58,6 +68,32 @@
 			.then(response => response.json())
 			.then(data => {
 				console.log(data.status) // Prints result from `response.json()` in getRequest
+				document.getElementById("status").innerHTML = data.message;
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+
+	}
+
+	function PostDataUsingJWT(idtoprocess) {
+		console.log('PostDataUsingJWT, idtoprocess=' + idtoprocess);
+
+		let data = {
+			id: idtoprocess
+		};
+
+		fetch('/SendDataByJwt', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			})
+			.then(response => response.json())
+			.then(data => {
+				console.log(data.status) // Prints result from `response.json()` in getRequest
+				document.getElementById("status").innerHTML = data.status;
 			})
 			.catch(function (error) {
 				console.log(error);
