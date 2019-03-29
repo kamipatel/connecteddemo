@@ -1,0 +1,83 @@
+<div class="slds-text-heading_medium">Org Instance URL:
+	<%= coninfo.instanceUrl %>
+</div>
+
+<br />
+<div class="slds-text-heading_small">Org User List
+	<span id="status"></span>
+</div>
+
+<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Username</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% for(var i=0; i < users.length; i++) { %>
+
+		<tr>
+			<td>
+				<%= users[i].Name %>
+			</td>
+			<td>
+				<%= users[i].Username %>
+			</td>
+			<td>
+				<%= users[i].Email %>
+			</td>
+			<td>
+				<button class="slds-button slds-button_brand" onClick="PostDataUsingJWT('<%=users[i].Id%>', '<%= users[i].Username%>',
+						'<%= coninfo.instanceUrl%>')">Send
+					data -
+					Using JWT</button>
+			</td>
+
+		</tr>
+		<% } %>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+	console.log('Client-side code running');
+
+	function PostDataUsingJWT(id, username, instanceUrl) {
+
+		console.log('PostDataUsingJWT, username=' + username);
+
+		var strUserName = 'username';
+		var strInstanceUrl = 'instanceUrl';
+
+		var data = {
+			[strUserName]: username,
+			[strInstanceUrl]: instanceUrl,
+		}
+
+
+		console.log('PostDataUsingJWT, data=' + JSON.stringify(data));
+
+		fetch('/SendDataByJwtNow', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			})
+			.then(response => response.json())
+			.then(data => {
+				console.log(data.status) // Prints result from `response.json()` in getRequest
+				//document.getElementById("status").innerHTML = data.status;
+
+				alert('Status =' + data.message);
+
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert('Status =' + ' Failed to insert a record in client org!');
+			});
+
+	}
+</script>
