@@ -39,3 +39,7 @@
 - Partner
 
 ## Upload the app to Heroku as a new app
+
+git add .
+git commit -am "make it better"
+git push heroku master
