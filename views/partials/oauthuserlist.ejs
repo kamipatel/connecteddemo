@@ -1,0 +1,59 @@
+<a href="/cleanup">Cleanup entries</a>
+
+<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+
+	<tbody>
+		<% for(var i=0; i < users.length; i++) { %>
+
+		<tr>
+			<td>
+				<%= users[i].name %>
+			</td>
+			<td>
+				<%= users[i].email %>
+			</td>
+			<td>
+				<%= users[i].orgid %>
+			</td>
+			<td>
+				<%= users[i].instanceUrl %>
+			</td>
+			<td>
+				<%= users[i].prefUsername %>
+			</td>
+			<td>
+				<a onClick="PostDataUsingRefreshToken('<%= users[i].id %>')">Send data - Using Refresh Token</a>
+
+			</td>
+		</tr>
+		<% } %>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+	console.log('Client-side code running');
+
+	function PostDataUsingRefreshToken(idtoprocess) {
+		console.log('PostDataUsingRefreshToken, id=' + idtoprocess);
+
+		let data = {
+			id: idtoprocess
+		};
+
+		fetch('/SendData', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			})
+			.then(response => response.json())
+			.then(data => {
+				console.log(data.status) // Prints result from `response.json()` in getRequest
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+
+	}
+</script>
