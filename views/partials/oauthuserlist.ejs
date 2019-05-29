@@ -50,9 +50,11 @@
 			.then(response => response.json())
 			.then(data => {
 				console.log(data.status) // Prints result from `response.json()` in getRequest
+				alert('Record inserted succesfully in client org!');
 			})
 			.catch(function (error) {
 				console.log(error);
+				alert('Failed to insert record in client org!');
 			});
 
 	}
