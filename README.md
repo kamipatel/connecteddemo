@@ -16,15 +16,18 @@
     - Access and manage your data (api)
     - Provide access to your data via the Web (web)
     - Allow access to your unique identifier (openid)
+    - Perform requests on your behalf at any time (refresh_token, offline_access)
 
   - Note down the consumer key and consumer secret for later.
 
   - Make sure to set... Permitted Users - "Admin approved users are pre authorised". Add the required profiles e.g. Sys Admin
     IP Relaxation - "Relax UP restrictions"
 
-4. Update your `.env` file
+4. Update your `.env` file. Update TBD in following
+   JWTAPPCONSUMERKEY=TBD
+   JWTAPPCONSUMERSECRET=TBD
 
-5. Replace the server.key under lib directory of the project
+5. Replace the server.key under lib directory of the project with your private key
 
 6. Test using command "Heroku local". (Make sure redirect URL in connected app is in following format)
    http://HOST:PORT/oauth/callback
