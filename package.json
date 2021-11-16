@@ -22,7 +22,7 @@
     "@salesforce-ux/design-system": "^2.8.3",
     "amqplib": "^0.5.1",
     "async": "^2.5.0",
-    "aws-sdk": "^2.422.0",
+    "aws-sdk": "^2.814.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.17.2",
     "child-process-promise": "^2.2.1",
