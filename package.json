@@ -29,7 +29,7 @@
     "child_process": "^1.0.2",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.6",
-    "express": "^4.15.3",
+    "express": "^4.17.3",
     "fs": "0.0.1-security",
     "guid": "0.0.12",
     "https": "^1.0.0",
